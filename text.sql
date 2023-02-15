@@ -22,10 +22,10 @@ CREATE TABLE town (
 );
 
 CREATE TABLE favorite (
-    member_id NUMBER CONSTRAINT favorite_member_id_fk REFERENCES members(members_id) ON DELETE CASCADE,
+    member_id NUMBER CONSTRAINT favorite_member_id_fk REFERENCES member(member_id) ON DELETE CASCADE,
     retail_id NUMBER CONSTRAINT favorite_retail_id_fk REFERENCES retail(retail_id) ON DELETE CASCADE,
    
-   CONSTRAINT favorite_member_id_retail_id_pk PRIMARY KEY (member_id, retail_id)
+    CONSTRAINT favorite_member_id_retail_id_pk PRIMARY KEY (member_id, retail_id)
 );
 
 CREATE TABLE sale (
@@ -38,7 +38,7 @@ CREATE TABLE sale (
 );
 
 CREATE TABLE wish_list (
-    member_id NUMBER CONSTRAINT wish_list_member_id_fk REFERENCES members(members_id) ON DELETE CASCADE,
+    member_id NUMBER CONSTRAINT wish_list_member_id_fk REFERENCES member(member_id) ON DELETE CASCADE,
     goods_id NUMBER CONSTRAINT wish_list_goods_id_fk REFERENCES goods(goods_id) ON DELETE CASCADE,
     
     CONSTRAINT wish_list_member_id_goods_id_pk PRIMARY KEY (member_id, goods_id)
@@ -46,12 +46,12 @@ CREATE TABLE wish_list (
 
 CREATE TABLE chat_room_enter (
     chat_room_id NUMBER CONSTRAINT chat_room_enter_chat_room_id_fk REFERENCES chatroom(chat_room_id) ON DELETE CASCADE,
-    members_id_1 NUMBER NOT NULL CONSTRAINT chat_room_enter_members_id_1_fk REFERENCES members(members_id) ON DELETE CASCADE,
-    members_id_2 NUMBER CONSTRAINT chat_room_enter_members_id_2_fk REFERENCES members(members_id) ON DELETE CASCADE,
-    members_id_3 NUMBER CONSTRAINT chat_room_enter_members_id_3_fk REFERENCES members(members_id) ON DELETE CASCADE,
-    members_id_4 NUMBER CONSTRAINT chat_room_enter_members_id_4_fk REFERENCES members(members_id) ON DELETE CASCADE,
+    member_id_1 NUMBER NOT NULL CONSTRAINT chat_room_enter_members_id_1_fk REFERENCES member(member_id) ON DELETE CASCADE,
+    member_id_2 NUMBER CONSTRAINT chat_room_enter_members_id_2_fk REFERENCES member(member_id) ON DELETE CASCADE,
+    member_id_3 NUMBER CONSTRAINT chat_room_enter_members_id_3_fk REFERENCES member(member_id) ON DELETE CASCADE,
+    member_id_4 NUMBER CONSTRAINT chat_room_enter_members_id_4_fk REFERENCES member(member_id) ON DELETE CASCADE,
     
-    CONSTRAINT chat_room_enter_chat_room_id_members_id PRIMARY KEY (chat_room_id)
+    CONSTRAINT chat_room_enter_chat_room_id_member_id PRIMARY KEY (chat_room_id)
 );
 
 
@@ -65,5 +65,4 @@ DROP TABLE favorite;
 DROP TABLE sale;
 DROP TABLE wish_list;
 DROP TABLE chat_room_enter;
-
 
